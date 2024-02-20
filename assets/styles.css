@@ -2,6 +2,7 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     max-width: 100%;
     background-color: white;
+    
   }
   
   header {
@@ -44,10 +45,16 @@
       border-radius: 15px;
       height: 50px;
       font-size: larger;
+    
   }
-  
+  button:hover{
+    background-color: darkorchid;
+
+  }
+
   .container {
     text-align: center;
     font-size: 60px;
     margin-top: 0px;
+
   }
