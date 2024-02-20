@@ -88,3 +88,206 @@ startBtn.addEventListener("click", function() {
     setQuizQuestions();
     time_start= true;
 });
+
+// #5 -- Quiz questions & choice options: in order to show questions and multiple-choice answers
+
+function setQuizQuestions() {
+    questionHeading.textContent = questionsArray[i].question;
+    answerChoiceA.textContent = questionsArray[i].answerChoice[0]; 
+    answerChoiceB.textContent = questionsArray[i].answerChoice[1]; 
+    answerChoiceC.textContent = questionsArray[i].answerChoice[2]; 
+    answerChoiceD.textContent = questionsArray[i].answerChoice[3]; 
+    };
+
+
+
+// When the user selects their answer for the question: then user is presented with another question
+
+// This will save the answer choices and Clear the elements and update score count, appropriately and change to the next question.
+
+
+answerChoiceA.addEventListener('click', function(event) {
+    event.stopPropagation();
+    correctAnswer= questionsArray[i].correctAnswer;
+    console.log("correctAnswer " + correctAnswer);
+    // checks answer
+    if (0 === correctAnswer) { 
+        // display message to user for 1 second to declare if the answer is correct or incorrect
+        document.getElementById("AnswerResponse").innerHTML = "Correct! Nailed it!";
+        setTimeout(function() {
+        document.getElementById("AnswerResponse").innerHTML = "";
+            },
+            1000
+        );
+        // when the user answers a question correctly it will INCREASE the score
+        score++;    
+        // display updated score progress
+        document.getElementById("score").innerHTML = score;
+    } else {
+        time_remaining -= 5;
+        // when user answers a question inccorrectly it will SUBTRACT from the time
+        document.getElementById("AnswerResponse").innerHTML = "Incorrect! Better luck in the next one!";
+        setTimeout(function() {
+            document.getElementById("AnswerResponse").innerHTML = "";
+                },
+                1000
+            );
+    }
+    if (i >= questionsArray.length -1) {
+    end_quiz();
+    } else {
+        i++ 
+        setQuizQuestions();
+    };
+});
+
+answerChoiceB.addEventListener('click', function(event) {
+event.stopPropagation();
+correctAnswer = questionsArray[i].correctAnswer;
+console.log(correctAnswer);
+    if (1 === correctAnswer) { 
+        document.getElementById("AnswerResponse").innerHTML = "Correct! Nailed it!";
+        setTimeout(function() {
+            document.getElementById("AnswerResponse").innerHTML = "";
+                },
+                1000
+            );
+        score++;
+        document.getElementById("score").innerHTML = score;
+    } else {
+        time_remaining -= 5;
+        document.getElementById("AnswerResponse").innerHTML = "Incorrect! Better luck in the next one!";
+        setTimeout(function() {
+            document.getElementById("AnswerResponse").innerHTML = "";
+                },
+                1000
+            );
+    }
+    if (i >= questionsArray.length -1) {
+    end_quiz();
+    } else {
+     i++ 
+    setQuizQuestions();
+    };
+});
+
+answerChoiceC.addEventListener('click', function(event) {
+event.stopPropagation();
+correctAnswer = questionsArray[i].correctAnswer;
+console.log(correctAnswer);
+if (2 === correctAnswer) { 
+    document.getElementById("AnswerResponse").innerHTML = "Correct! Nailed it!";
+    setTimeout(function() {
+        document.getElementById("AnswerResponse").innerHTML = "";
+            },
+            1000
+        );
+    score++;
+    document.getElementById("score").innerHTML = score;
+} else {
+    time_remaining -= 5;
+    document.getElementById("AnswerResponse").innerHTML = "Incorrect! Better luck in the next one!";
+    setTimeout(function() {
+        document.getElementById("AnswerResponse").innerHTML = "";
+            },
+            1000
+        );
+}
+if (i >= questionsArray.length -1) {
+end_quiz();
+} else {
+    i++ 
+    setQuizQuestions();
+};
+});
+
+answerChoiceD.addEventListener('click', function(event) {
+event.stopPropagation();
+correctAnswer= questionsArray[i].correctAnswer.value;
+console.log(correctAnswer);
+if (3 === correctAnswer) { 
+    document.getElementById("AnswerResponse").innerHTML = "Correct! Nailed it!";
+    setTimeout(function() {
+        document.getElementById("AnswerResponse").innerHTML = "";
+            },
+            1000
+        );
+    score++;
+    document.getElementById("score").innerHTML = score;
+} else {
+    time_remaining -= 5;
+    document.getElementById("AnswerResponse").innerHTML = "Incorrect! Better luck in the next one!";
+    setTimeout(function() {
+        document.getElementById("AnswerResponse").innerHTML = "";
+            },
+            1000
+        );
+}
+if (i >= questionsArray.length -1) {
+   end_quiz();
+} else {
+    i++ 
+    setQuizQuestions();
+};
+});
+
+    //#6 -- END QUIZ --
+
+
+    function end_quiz(){
+        document.getElementById("game_over").style.display= "block";
+        document.getElementById("quizContainer").style.display="none";
+        document.getElementById("countdownTimer").style.display= "none";
+        document.getElementById("score_keeper").style.display= "none";
+        document.getElementById("AnswerResponse").innerHTML="";
+        document.getElementById("end_score").innerHTML= score;
+        }
+
+    //in order to log score and initals
+        function submit_score() {
+         high_scores.push(document.getElementById("initials").value + " " + score);
+         view_high_scores();
+        }
+
+    // localStorage.setItem("score",JSON.stringify(AnswerResponse));
+    // localStorage.setItem("initials", JSON.stringify(initials));
+    
+    function view_high_scores(){
+    
+    // to change the the screen output
+    
+        document.getElementById("quizContainer").style.display="none";
+        document.getElementById("game_over").style.display= "none";
+        document.getElementById("high_scores_page").style.display="block";
+    
+        output="";
+        for(let k=0; k<high_scores.length; k++){
+             output = output + "  " + high_scores[k];
+        }
+        document.getElementById("high_scores").innerHTML= output;                
+         clear_up();
+    }
+
+    // in order to refresh and return the site back to the home container page
+
+    function go_home(){	
+            document.getElementById("high_scores_page").style.display= "none";
+            document.getElementById("homeContainer").style.display= "block";
+            clear_up();
+    }
+    
+    // clear the highscore
+    function clear_hs(){
+        high_scores = [];
+        // high_scores.splice(0, high_scores.length);
+      }
+    
+    // refresh the site 
+    function clear_up(){
+    
+    time=75;
+    time_remaining=true;
+    time_start=false;
+    i=0;
+    score=0;
+    }
