@@ -1,6 +1,8 @@
 // Once the user presses the start button, the question will appear and the timer will begin
 
-    // #1 Place and Declare global variables 
+    // #1 --Place and Declare global variables 
+
+
     var startBtn = document.getElementById("startBtn");
     var time = 75;
     var time_remaining = true;
@@ -21,7 +23,7 @@
     // question index
     let i = 0;
 
-// #2  Place and Declare questions array; This will present the questions for the quiz:
+// #2  --Place and Declare questions array; This will present the questions for the quiz:
 
 var questionsArray = [
 {
@@ -53,3 +55,36 @@ var questionsArray = [
     answerChoice: ["A) Return a value", "B) Accept parameters", "C) Accept parameters and Return a value", "D) All of the above"],
     correctAnswer: 1
 }];
+
+
+//#3 Countdown Timer Section: Set countdown timer and interval as well as time-related valiables.
+
+//This will change the seconds variable every second.
+
+var countdownTimerInterval = setInterval(setCountdownTimer, 1000);
+
+//function in order to change the time variable
+
+function setCountdownTimer() {
+        if (time_start)
+        time--;
+        if(time<= 0) {
+        end_quiz();
+        time = 0;    
+        // clearInterval(countdownTimerInterval);
+        //alert user and stop quiz
+        }
+        document.getElementById("timer").innerHTML = time;
+    }
+
+// #4 --Event Listener (Start): When user clicks the Start button, start the countdown timer and quiz questions. Each button should have its own event liste
+startBtn.addEventListener("click", function() {
+    quizContainer.style.display = "block";
+    homeContainer.style.display ="none";
+    countdownTimer.style.display= "block";
+    document.getElementById("score_keeper").style.display= "block";
+    document.getElementById("score").innerHTML = score;
+    setCountdownTimer();
+    setQuizQuestions();
+    time_start= true;
+});
