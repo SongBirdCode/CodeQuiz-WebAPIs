@@ -29,19 +29,19 @@ var questionsArray = [
 {
     question: "Question: What is the HTML tag under which you can write the JavaScript code?",
     imageSrc: "",
-    answerChoice: ["A) <javascript>", "B) <scripted>", "C) <script>", "D) <js>"],
+    answerChoice: ["A) <javascript>", "B) <scripted>", "C) <script>", "D) <css>"],
     correctAnswer: 2
 }, 
 {
     question: "Question: What are variables used for in JavaScript Programs?",
     imageSrc: "",
-    answerChoice: ["A) Storing numbers, dates, or other values", "B) Varying randomly", "D) Causing high-school algebra flashbacks", "D) None of the above"],
+    answerChoice: ["A) Storing numbers, dates, or other values", "B) Creating repositories", "D) to send messages to GrubHub deliverers", "D) None of the above"],
     correctAnswer: 0
 },
 {
     question: "Question: Which method adds a new item to the end of an array and returns the new length?",
     imageSrc: "",
-    answerChoice: ["A) shift()", "B) return() ", "C) push() ", "D) pop()"],
+    answerChoice: ["A) shift()", "B) return() ", "C) push() ", "D) splash()"],
     correctAnswer: 2
 }, 
 {
@@ -255,7 +255,7 @@ if (i >= questionsArray.length -1) {
     function view_high_scores(){
     
     // to change the the screen output
-    
+
         document.getElementById("quizContainer").style.display="none";
         document.getElementById("game_over").style.display= "none";
         document.getElementById("high_scores_page").style.display="block";
